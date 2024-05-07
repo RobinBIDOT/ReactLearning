@@ -7,7 +7,7 @@ class Formulaire extends Component {
         length: this.props.length
     }
     createMessage = () => {
-        const { addMessage, pseudo } = this.props
+        const { addMessage, pseudo, length } = this.props
 
         const message = {
             pseudo,
@@ -16,7 +16,7 @@ class Formulaire extends Component {
         addMessage(message)
 
         // Reset
-        this.setState({message: ''})
+        this.setState({message: '', length})
     }
     handleSubmit = event => {
         event.preventDefault()
@@ -27,6 +27,11 @@ class Formulaire extends Component {
         const length = this.props.length - message.length
         this.setState({message, length})
     }
+    handleKeyUp = event => {
+        if (event.key === 'Enter') {
+            this.createMessage()
+        }
+    }
     render() {
         return (
             <form
@@ -35,8 +40,9 @@ class Formulaire extends Component {
                 <textarea
                     value={this.state.message}
                     onChange={this.handleChange}
+                    onKeyUp={this.handleKeyUp}
                     required
-                    maxLength='140' />
+                    maxLength={this.props.length} />
                 <div className='info'>
                     { this.state.length }
                 </div>
