@@ -1,12 +1,12 @@
-// Import the functions you need from the SDKs you need
+// Importation des fonctions nécessaires depuis les SDKs Firebase
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getDatabase } from "firebase/database";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// TODO: Ajouter les SDKs pour les produits Firebase que vous souhaitez utiliser
+// Voir la documentation pour plus d'informations: https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Configuration de votre application web Firebase
+// Pour le SDK Firebase JS v7.20.0 et versions ultérieures, measurementId est optionnel
 const firebaseConfig = {
     apiKey: "AIzaSyCjdr3_Bpvw2rHui9qqgcNxAxckyyEBiRI",
     authDomain: "chatbox-app-f2350.firebaseapp.com",
@@ -18,14 +18,15 @@ const firebaseConfig = {
     measurementId: "G-FR9QE4HZLT"
 };
 
-// Initialize Firebase
+// Initialisation de Firebase avec la configuration spécifiée
 const firebaseApp = initializeApp(firebaseConfig);
 
-// Initialize Firebase Analytics
+// Initialisation de Firebase Analytics
 const analytics = getAnalytics(firebaseApp);
 
-// Get a reference to the database service
+// Obtention d'une référence au service de base de données
 const base = getDatabase(firebaseApp);
-// const firestore = getFirestore(firebaseApp); // Uncomment if using Firestore
+// const firestore = getFirestore(firebaseApp); // Décommenter si vous utilisez Firestore
 
-export { firebaseApp, analytics, base }; // Export the required services
+// Export des services requis
+export { firebaseApp, analytics, base }; // Exporte les services requis pour une utilisation dans d'autres parties de l'application
