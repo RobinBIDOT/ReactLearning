@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import './App.css'
 import Formulaire from "./components/Formulaire";
 import Message from "./components/Message";
@@ -12,6 +12,8 @@ class App extends Component {
         pseudo: this.props.pseudo
     }
 
+    messagesRef = createRef()
+
     componentDidMount() {
         const messagesRef = ref(base, '/');
         onValue(messagesRef, (snapshot) => {
@@ -22,19 +24,34 @@ class App extends Component {
         });
     }
 
-    addMessage = message => {
-        // Generate a new key for a new message
-        const key = `message-${Date.now()}`;
-        const messages = { ...this.state.messages, [key]: message };
+    componentDidUpdate () {
+        const ref = this.messagesRef.current
+        ref.scrollTop = ref.scrollHeight
+    }
 
-        // Update Firebase directly
+    addMessage = message => {
+        const key = `message-${Date.now()}`;
+        let messages = { ...this.state.messages, [key]: message };
+
         set(ref(base, `/${key}`), message).catch(error => {
             console.error("Error writing new message to Firebase Database", error);
         });
 
+        const messageKeys = Object.keys(messages);
+        const sortedKeys = messageKeys.sort((a, b) => a.localeCompare(b));
+        if (sortedKeys.length > 10) {
+            const keysToRemove = sortedKeys.slice(0, sortedKeys.length - 10);
+            keysToRemove.forEach(key => {
+                delete messages[key];
+                set(ref(base, `/${key}`), null);
+            });
+        }
+
         this.setState({ messages });
     }
-  render () {
+
+
+    render () {
         const messages = Object
             .keys(this.state.messages)
             .map(key => (
@@ -46,7 +63,7 @@ class App extends Component {
     return (
       <div className='box'>
         <div>
-          <div className="messages">
+          <div className="messages" ref={this.messagesRef}>
               <div className='message'>
                   { messages }
               </div>
