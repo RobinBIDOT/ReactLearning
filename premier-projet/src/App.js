@@ -11,7 +11,7 @@ const famille = {
     },
     membre2: {
         nom: 'Carolina',
-        age: 27
+        age: 32
     },
     membre3: {
         nom: 'Camilla',
@@ -36,12 +36,20 @@ class App extends Component {
         famille.membre4.age += num
         this.setState({ famille })
     }
+    handleChange = event => {
+        const famille = { ... this.state.famille }
+        const nom = event.target.value
+        famille.membre1.nom = nom
+        this.setState({ famille })
+    }
   render() {
     const {titre} =this.props
     const { famille } = this.state
     return (
         <div className='App'>
           <h1>{titre}</h1>
+            <input value={famille.membre1.nom} onChange=
+                {this.handleChange} type="text"/>
           <Membre
               age={famille.membre1.age}
               nom={famille.membre1.nom}/>
