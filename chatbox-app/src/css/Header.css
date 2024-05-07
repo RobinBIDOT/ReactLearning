@@ -1,0 +1,23 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(14,9,121,1) 85%, rgba(0,129,255,1) 100%);
+}
+
+.title {
+    margin: 0;
+    font-size: 2rem;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 1rem;
+    }
+    .logo {
+        height: 30px;
+    }
+}

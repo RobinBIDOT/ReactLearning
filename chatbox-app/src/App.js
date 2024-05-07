@@ -1,10 +1,14 @@
-import React, { Component, createRef } from 'react'
-import './App.css'
+import React, {Component, createRef, Fragment} from 'react'
+import './css/App.css'
+import './css/aminations.css'
 import Formulaire from "./components/Formulaire";
 import Message from "./components/Message";
-
+import Header from './components/Header';
+import Footer from './components/Footer';
 import { ref, set, onValue } from "firebase/database";
 import { base } from './base';
+
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class App extends Component {
     state = {
@@ -51,22 +55,27 @@ class App extends Component {
     }
 
 
+    isUser = pseudo => pseudo === this.state.pseudo
+
     render () {
-        const messages = Object
-            .keys(this.state.messages)
-            .map(key => (
+        const messages = Object.keys(this.state.messages).map(key => (
+            <CSSTransition key={key} timeout={300} classNames="fade">
                 <Message
-                key={key}
-                message={this.state.messages[key].message}
-                pseudo={this.state.messages[key].pseudo} />
-            ))
+                    isUser={this.isUser}
+                    message={this.state.messages[key].message}
+                    pseudo={this.state.messages[key].pseudo}
+                />
+            </CSSTransition>
+        ));
     return (
+        <Fragment>
+        <Header />
       <div className='box'>
         <div>
           <div className="messages" ref={this.messagesRef}>
-              <div className='message'>
+              <TransitionGroup className='message'>
                   { messages }
-              </div>
+              </TransitionGroup>
           </div>
         </div>
         <Formulaire
@@ -75,6 +84,8 @@ class App extends Component {
         addMessage={this.addMessage}/>
 
       </div>
+        <Footer />
+        </Fragment>
     )
   }
 }

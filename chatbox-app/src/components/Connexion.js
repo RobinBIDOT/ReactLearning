@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import { Navigate } from 'react-router-dom';
+import Header from "./Header";
+import Footer from "./Footer";
 
 class Connexion extends Component {
     state = {
@@ -22,18 +24,22 @@ class Connexion extends Component {
             return <Navigate push to={`/pseudo/${this.state.pseudo}`} />;
         }
         return (
-            <div className='connexionBox'>
-                <form className='connexion' onSubmit={this.handleSubmit}>
-                    <input
-                        value={this.state.pseudo}
-                        onChange={this.handleChange}
-                        placeholder='Pseudo'
-                        type="text"
-                        required
-                    />
-                    <button type='submit'>GO</button>
-                </form>
-            </div>
+            <Fragment>
+                <Header />
+                <div className='connexionBox'>
+                    <form className='connexion' onSubmit={this.handleSubmit}>
+                        <input
+                            value={this.state.pseudo}
+                            onChange={this.handleChange}
+                            placeholder='Pseudo'
+                            type="text"
+                            required
+                        />
+                        <button type='submit'>GO</button>
+                    </form>
+                </div>
+                <Footer />
+            </Fragment>
         );
     }
 }
