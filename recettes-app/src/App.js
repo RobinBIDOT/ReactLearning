@@ -58,6 +58,24 @@ class App extends Component {
         off(recettesRef, 'value', this.recettesListener);
     }
 
+    ajouterRecette = recette => {
+        // Copie de l'état actuel des recettes
+        const recettes = { ...this.state.recettes };
+
+        // Ajout de la nouvelle recette avec une clé unique basée sur le timestamp
+        recettes[`recette-${Date.now()}`] = recette;
+
+        // Mise à jour de l'état avec les nouvelles recettes
+        this.setState({ recettes });
+
+        // Optionnellement, mettre à jour les données dans Firebase
+        const db = getDatabase();
+        const recettesRef = ref(db, `/${this.state.pseudo}/recettes`);
+        set(recettesRef, recettes).catch((error) => {
+            console.error("Erreur lors de la mise à jour des recettes dans Firebase:", error);
+        });
+    }
+
     chargerExemple = () => this.setState({recettes})
 
         render() {
@@ -70,7 +88,9 @@ class App extends Component {
                 <div className='cards'>
                     {cards}
                 </div>
-                <Admin chargerExemple={this.chargerExemple}></Admin>
+                <Admin
+                    ajouterRecette={this.ajouterRecette}
+                    chargerExemple={this.chargerExemple}></Admin>
             </div>
         );
     }
