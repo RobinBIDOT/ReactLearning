@@ -1,24 +1,28 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { useParams } from 'react-router-dom';
+
 // CSS
-import './App.css'
+import './App.css';
 
-class App extends Component {
-  state = {
-    pseudo: this.props.match.params.pseudo
-  }
-
-  render () {
-    return (
-      <div className='box'>
-        <h1>Bonjour {this.state.pseudo}</h1>
-        <div className='cards'>
-          <div className='card'>
-            <h2>Une Carte</h2>
-          </div>
-        </div>
-      </div>
-    )
-  }
+function AppWrapper() {
+    let { pseudo } = useParams();
+    return <App pseudo={pseudo} />;
 }
 
-export default App
+class App extends Component {
+    render() {
+        const { pseudo } = this.props;
+        return (
+            <div className='box'>
+                <h1>Bonjour {pseudo}</h1>
+                <div className='cards'>
+                    <div className='card'>
+                        <h2>Une Carte</h2>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
+export default AppWrapper;
