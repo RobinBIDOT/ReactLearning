@@ -4,8 +4,9 @@ import Login from "./Login";
 import AdminForm from "./AdminForm";
 
 // Import from your base module or directly from Firebase SDKs
-import { auth, loginWithFacebook, base, logout as firebaseLogout } from '../base'; // Ensure that logout is correctly exported from base.js
 import { onAuthStateChanged } from "firebase/auth";
+import { auth, loginWithFacebook, base, logout as firebaseLogout } from '../base';
+
 
 class Admin extends Component {
     state = {

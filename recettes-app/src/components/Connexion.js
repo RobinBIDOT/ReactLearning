@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import { Navigate } from 'react-router-dom'
+import withPlaceholder from '../hoc/withPlaceholder'
 
 class Connexion extends React.Component {
   state = {
@@ -23,20 +24,22 @@ class Connexion extends React.Component {
     }
 
     return (
-      <div className='connexionBox'>
-        <form className='connexion' onSubmit={this.goToApp} >
-          <h1>Ma Boîte à Recettes</h1>
-          <input
-            type='text'
-            value={this.state.pseudo}
-            onChange={this.handleChange}
-            placeholder='Nom du Chef'
-            pattern='[A-Za-z\-]{1,}'
-            required />
-          <button type='submit'>GO</button>
+        <Fragment>
+          <div className='connexionBox'>
+            <form className='connexion' onSubmit={this.goToApp} >
+              <h1>Ma Boîte à Recettes</h1>
+              <input
+                  type='text'
+                  value={this.state.pseudo}
+                  onChange={this.handleChange}
+                  placeholder={this.props.placeholder}
+                  pattern='[A-Za-z-]{1,}'
+                  required />
+              <button type='submit'>GO</button>
+            </form>
+          </div>
           <p>Pas de caractères spéciaux.</p>
-        </form>
-      </div>
+        </Fragment>
     )
   }
 }

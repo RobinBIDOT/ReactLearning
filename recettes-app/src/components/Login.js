@@ -1,4 +1,6 @@
 import React from 'react';
+import { LoginSocialFacebook } from "reactjs-social-login";
+import { FacebookLoginButton } from "react-social-login-buttons";
 
 const Login = ({ authenticate }) => {
     return (
