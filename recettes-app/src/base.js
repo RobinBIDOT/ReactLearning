@@ -8,14 +8,14 @@ import { getDatabase } from "firebase/database";
 // Configuration de votre application web Firebase
 // Pour le SDK Firebase JS v7.20.0 et versions ultérieures, measurementId est optionnel
 const firebaseConfig = {
-  apiKey: "xxx",
-  authDomain: "xxx",
-  databaseURL: "xxx",
-  projectId: "xxx",
-  storageBucket: "xxx",
-  messagingSenderId: "xxx",
-  appId: "xxx",
-  measurementId: "xxx"
+  apiKey: "AIzaSyDQkrGh8tHsuYiEHSGaIy-Ozcc7rG0fGZ4",
+  authDomain: "recettes-app-f6970.firebaseapp.com",
+  databaseURL: "https://recettes-app-f6970-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "recettes-app-f6970",
+  storageBucket: "recettes-app-f6970.appspot.com",
+  messagingSenderId: "425191560059",
+  appId: "1:425191560059:web:dde97d9b7f6be95be163de",
+  measurementId: "G-9RXLFWR6Z0"
 };
 
 // Initialisation de Firebase avec la configuration spécifiée

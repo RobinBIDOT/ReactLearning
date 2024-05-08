@@ -31,7 +31,7 @@ class Connexion extends React.Component {
             value={this.state.pseudo}
             onChange={this.handleChange}
             placeholder='Nom du Chef'
-            pattern='[A-Za-z-]{1,}'
+            pattern='[A-Za-z\-]{1,}'
             required />
           <button type='submit'>GO</button>
           <p>Pas de caractères spéciaux.</p>
